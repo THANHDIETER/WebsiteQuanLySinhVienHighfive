@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
+    protected $table = 'attendances';
     /**
      * Display a listing of the resource.
      */

@@ -6,7 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassScheduleController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\CourseTeacherController;
+use App\Http\Controllers\Course_TeacherController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\NotificationController;
@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('courses', CourseController::class);
 
     // Course Teacher
-    Route::resource('course-teachers', CourseTeacherController::class);
+    Route::resource('course-teachers', Course_TeacherController::class);
 
     // Enrollment
     Route::resource('enrollments', EnrollmentController::class);

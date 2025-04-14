@@ -17,11 +17,18 @@ class TeacherFactory extends Factory
     public function definition(): array
     {
         return [
-            'teacher_code' => strtoupper('GV' . $this->faker->unique()->numerify('###')),
-            'full_name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->phoneNumber,
-            'department' => $this->faker->randomElement(['IT', 'Math', 'Physics', 'Chemistry']),
+            'teacher_code' => 'GV' . $this->faker->unique()->numerify('###'),
+            'full_name'    => $this->faker->name(),
+            'email'        => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->regexify('0[0-9]{9}'), // đúng định dạng 10 chữ số bắt đầu bằng 0
+
+            'department'   => $this->faker->randomElement([
+                'Công nghệ thông tin',
+                'Kế toán',
+                'Kỹ thuật điện',
+                'Khoa học dữ liệu',
+                'Quản trị kinh doanh',
+            ]),
         ];
     }
 
