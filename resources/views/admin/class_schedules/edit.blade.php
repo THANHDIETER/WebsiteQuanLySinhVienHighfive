@@ -56,12 +56,22 @@
         </div>
 
         <div class="form-group">
-            <label for="day_of_week">Ngày trong tuần</label>
-            <input type="text" name="day_of_week" id="day_of_week" class="form-control" value="{{ old('day_of_week', $schedule->day_of_week) }}" required>
+            <label for="day_of_week">Day of the Week</label>
+            <select name="day_of_week" id="day_of_week" class="form-control" required>
+                <option value="">Select a day</option>
+                <option value="Monday" {{ old('day_of_week', $schedule->day_of_week) == 'Monday' ? 'selected' : '' }}>Monday</option>
+                <option value="Tuesday" {{ old('day_of_week', $schedule->day_of_week) == 'Tuesday' ? 'selected' : '' }}>Tuesday</option>
+                <option value="Wednesday" {{ old('day_of_week', $schedule->day_of_week) == 'Wednesday' ? 'selected' : '' }}>Wednesday</option>
+                <option value="Thursday" {{ old('day_of_week', $schedule->day_of_week) == 'Thursday' ? 'selected' : '' }}>Thursday</option>
+                <option value="Friday" {{ old('day_of_week', $schedule->day_of_week) == 'Friday' ? 'selected' : '' }}>Friday</option>
+                <option value="Saturday" {{ old('day_of_week', $schedule->day_of_week) == 'Saturday' ? 'selected' : '' }}>Saturday</option>
+                <option value="Sunday" {{ old('day_of_week', $schedule->day_of_week) == 'Sunday' ? 'selected' : '' }}>Sunday</option>
+            </select>
             @error('day_of_week')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
-        </div>
+        </div>        
+        
 
         <div class="form-group">
             <label for="start_time">Giờ bắt đầu</label>
