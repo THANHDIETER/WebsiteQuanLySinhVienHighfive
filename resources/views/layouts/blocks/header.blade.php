@@ -1,12 +1,5 @@
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="container-xxl">
-      
-
-      
-      
-
-      
-      
       <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
           <i class="bx bx-menu bx-sm"></i>
@@ -27,15 +20,10 @@
           </div>
         </div>
         <!-- /Search -->
-        
-
-        
-
-        
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
           
-          <!-- Language -->
+          {{-- <!-- Language -->
           <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <i class='bx bx-globe bx-sm'></i>
@@ -63,7 +51,7 @@
               </li>
             </ul>
           </li>
-          <!--/ Language -->
+          <!--/ Language --> --}}
 
           
 

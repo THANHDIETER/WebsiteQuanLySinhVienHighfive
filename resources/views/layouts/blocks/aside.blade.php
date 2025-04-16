@@ -59,21 +59,16 @@
 
     <ul class="menu-inner py-1">
         <li class="menu-item">
-            <a href="app-email.html" class="menu-link">
+            <a href="{{ route('admin.students.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-envelope"></i>
-                <div data-i18n="Email">Email</div>
+                <div >Quản lý sinh viên</div>
             </a>
         </li>
+        
         <li class="menu-item">
-            <a href="app-chat.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Chat">Chat</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="app-calendar.html" class="menu-link">
+            <a href="{{ route('admin.class_schedules.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Calendar">Calendar</div>
+                <div data-i18n="Calendar">Quản lý lớp học</div>
             </a>
         </li>
         <li class="menu-item">
