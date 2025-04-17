@@ -59,23 +59,57 @@
 
     <ul class="menu-inner py-1">
         <li class="menu-item">
-            <a href="{{ route('admin.students.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
-                <div >Quản lý sinh viên</div>
+            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home"></i>
+                <div data-i18n="Quản lý sinh viên">Trang quản trị</div>
             </a>
         </li>
-        
-        <li class="menu-item">
-            <a href="{{ route('admin.class_schedules.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Calendar">Quản lý lớp học</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="app-kanban.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-grid"></i>
-                <div data-i18n="Kanban">Kanban</div>
-            </a>
-        </li>
-    </ul>
+      <li class="menu-item">
+          <a href="{{ route('admin.students.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-user"></i>
+              <div data-i18n="Quản lý sinh viên">Quản lý sinh viên</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.class_schedules.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-chalkboard"></i>
+              <div data-i18n="Quản lý lớp học">Quản lý lớp học</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.courses.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-book"></i>
+              <div data-i18n="Quản lý môn học">Quản lý môn học</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.exam_results.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-clipboard"></i>
+              <div data-i18n="Quản lý điểm">Quản lý điểm</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.teachers.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-chalkboard"></i>
+              <div data-i18n="Quản lý giảng viên">Quản lý giảng viên</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.users.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-group"></i>
+              <div data-i18n="Tài khoản người dùng">Tài khoản người dùng</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('admin.teachers.index') }}" class="menu-link"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="menu-icon tf-icons bx bx-log-out"></i>
+              <div data-i18n="Đăng xuất">Đăng xuất</div>
+          </a>
+          <form id="logout-form" action="{{ route('admin.teachers.index') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+      </li>
+  </ul>
+  
 </aside>

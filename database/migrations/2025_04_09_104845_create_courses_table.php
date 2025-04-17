@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('course_name', 100);
             $table->integer('credits');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
         

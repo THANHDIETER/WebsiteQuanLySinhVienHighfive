@@ -31,7 +31,15 @@
                                 <tr>
                                     <td>{{ $student->student_code }}</td>
                                     <td>{{ $student->full_name }}</td>
-                                    <td>{{ $student->gender }}</td>
+                                    <td>
+                                        @if ($student->gender === 'Male')
+                                            Nam
+                                        @elseif ($student->gender === 'Female')
+                                            Nữ
+                                        @else
+                                            Khác
+                                        @endif
+                                    </td>                                    
                                     <td>{{ $student->email }}</td>
                                     <td>{{ $student->phone }}</td>
                                     <td>{{ $student->created_at->format('d/m/Y H:i') }}</td>

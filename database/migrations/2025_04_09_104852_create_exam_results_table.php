@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('exam_type', ['Midterm', 'Final', 'Quiz']);
             $table->float('score');
             $table->date('exam_date');
+            $table->softDeletes();
             $table->timestamps();
         });
         
