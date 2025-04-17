@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class CourseFactory extends Factory
             'course_name' => $this->faker->words(3, true),
             'credits' => $this->faker->numberBetween(1, 4),
             'description' => $this->faker->paragraph,
+            'teacher_id' => Teacher::inRandomOrder()->first()?->id, 
         ];
     }
 
