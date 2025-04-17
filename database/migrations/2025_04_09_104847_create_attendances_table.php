@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exam_results', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->enum('exam_type', ['Midterm', 'Final', 'Quiz']);
-            $table->float('score');
-            $table->date('exam_date');
-            $table->softDeletes();
+            $table->date('attendance_date');
+            $table->enum('status', ['Present', 'Absent', 'Late']);
             $table->timestamps();
         });
         
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exam_results');
+        Schema::dropIfExists('attendances');
     }
 };

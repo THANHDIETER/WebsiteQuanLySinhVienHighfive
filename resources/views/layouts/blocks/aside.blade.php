@@ -58,26 +58,32 @@
 
 
     <ul class="menu-inner py-1">
+        <li class="menu-item">
+            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home"></i>
+                <div data-i18n="Quản lý sinh viên">Trang quản trị</div>
+            </a>
+        </li>
       <li class="menu-item">
-          <a href="{{ route('admin.teachers.index') }}" class="menu-link">
+          <a href="{{ route('admin.students.index') }}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-user"></i>
               <div data-i18n="Quản lý sinh viên">Quản lý sinh viên</div>
           </a>
       </li>
       <li class="menu-item">
-          <a href="{{ route('admin.teachers.index') }}" class="menu-link">
+          <a href="{{ route('admin.class_schedules.index') }}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-chalkboard"></i>
               <div data-i18n="Quản lý lớp học">Quản lý lớp học</div>
           </a>
       </li>
       <li class="menu-item">
-          <a href="{{ route('admin.teachers.index') }}" class="menu-link">
+          <a href="{{ route('admin.courses.index') }}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-book"></i>
               <div data-i18n="Quản lý môn học">Quản lý môn học</div>
           </a>
       </li>
       <li class="menu-item">
-          <a href="{{ route('admin.teachers.index') }}" class="menu-link">
+          <a href="{{ route('admin.exam_results.index') }}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-clipboard"></i>
               <div data-i18n="Quản lý điểm">Quản lý điểm</div>
           </a>

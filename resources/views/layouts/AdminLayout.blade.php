@@ -13,7 +13,7 @@
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://1.envato.market/frest_admin">
-    <script>
+    {{-- <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -28,7 +28,7 @@
                 '../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5J3LMKC');
-    </script>
+    </script> --}}
     <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
@@ -61,12 +61,12 @@
 
 
     <!-- Helpers -->
-    <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
+    {{-- <script src="{{asset('assets/vendor/js/helpers.js')}}"></script> --}}
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script>
+    {{-- <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script> --}}
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset('assets/js/config.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/config.js')}}"></script> --}}
 
 </head>
 

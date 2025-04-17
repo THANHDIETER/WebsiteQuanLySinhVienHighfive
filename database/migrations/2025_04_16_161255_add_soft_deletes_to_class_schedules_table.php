@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_teachers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('class_schedules', function (Blueprint $table) {
+            $table->softDeletes(); // Thêm cột deleted_at
         });
-        
     }
 
     /**
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_teachers');
+        Schema::table('class_schedules', function (Blueprint $table) {
+            $table->dropSoftDeletes(); // Xóa cột deleted_at nếu rollback
+        });
     }
 };
