@@ -9,7 +9,7 @@ use App\Models\ClassSchedule;
 use App\Models\Enrollment;
 use App\Models\ExamResult;
 use App\Models\Notification;
-use App\Models\Course_Teacher;
+use App\Models\CourseTeacher;
 use App\Models\Attendance;
 use Illuminate\Routing\Controller;
 
@@ -26,7 +26,7 @@ class HomeController extends Controller
             'examResultsCount'     => ExamResult::count(),
             'schedulesCount'       => ClassSchedule::count(),
             'notificationsCount'   => Notification::count(),
-            'courseTeachersCount'  => Course_Teacher::count(),
+            'courseTeachersCount'  => CourseTeacher::count(),
             'attendancesCount'     => Attendance::count(),
             'subjectsCount' => Course::count(), // Dùng course là môn học
 

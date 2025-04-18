@@ -12,7 +12,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->unique()->after('name');
             $table->enum('role', ['admin', 'teacher', 'student'])->default('student')->after('email');
             $table->unsignedBigInteger('reference_id')->nullable()->after('role');
         });
@@ -21,7 +20,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['username', 'role', 'reference_id']);
+            $table->dropColumn(['role', 'reference_id']);
         });
     }
     

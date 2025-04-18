@@ -15,18 +15,16 @@ class StudentFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-{
-    return [
-        'student_code' => 'SV' . $this->faker->unique()->numerify('#####'), // SV00000 đến SV99999
-
-        'full_name' => $this->faker->name(),
-        'gender' => $this->faker->randomElement(['Male', 'Female']),
-        'date_of_birth' => $this->faker->date(),
-        'email' => $this->faker->unique()->safeEmail(),
-        'phone' => $this->faker->regexify('0[0-9]{9}'),
-        'address' => $this->faker->address,
-    ];
-}
-
+    {
+        return [
+            'student_code' => strtoupper('SV' . $this->faker->unique()->numerify('###')),
+            'full_name' => $this->faker->name,
+            'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
+            'date_of_birth' => $this->faker->date(),
+            'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->phoneNumber,
+            'address' => $this->faker->address,
+        ];
+    }
 
 }
