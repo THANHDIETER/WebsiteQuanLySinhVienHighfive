@@ -20,21 +20,25 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6',
+        'role' => 'required|in:student,admin,teacher',
+    ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'role' => $request->role,
+        'email_verified_at' => now(), // nếu bạn muốn đánh dấu là đã xác minh luôn
+    ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Thêm tài khoản thành công!');
-    }
+    return redirect()->route('admin.users.index')->with('success', 'Thêm tài khoản thành công!');
+}
+
 
     public function show($id)
     {
