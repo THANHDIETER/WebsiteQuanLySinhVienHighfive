@@ -2,22 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\ClassScheduleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\CourseTeacherController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ClassScheduleController;
+use App\Http\Controllers\CourseTeacherController;
+use App\Http\Controllers\Teacher\ScoreController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Teacher\DashboardController as TeacherDashboard;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Student\StudentCourseController;
+use App\Http\Controllers\Student\StudentResultController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboard;
+use App\Http\Controllers\Teacher\DashboardController as TeacherDashboard;
 
 // Authentication routes
 
@@ -106,11 +109,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Teacher routes
 Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/dashboard', [TeacherDashboard::class, 'index'])->name('dashboard');
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+    Route::get('/students', [StudentController::class, 'index'])->name('students');
+    Route::get('/scores', [ScoreController::class, 'index'])->name('scores');
+
     // Add teacher-specific routes here
 });
 
 // Student routes
 Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('dashboard');
-    // Add student-specific routes here
+    Route::get('/courses', [StudentCourseController::class, 'index'])->name('courses');
+    Route::get('/results', [StudentResultController::class, 'index'])->name('results'); 
+    
+
 });

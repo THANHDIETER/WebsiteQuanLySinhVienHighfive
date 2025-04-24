@@ -58,6 +58,7 @@
 
 
     <ul class="menu-inner py-1">
+        @if (auth()->user()->role === 'admin')
         <li class="menu-item">
             <a href="{{ route('admin.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home"></i>
@@ -110,6 +111,52 @@
               @csrf
           </form>
       </li>
+        @elseif (auth()->user()->role === 'teacher')
+        <li class="menu-item">
+            <a href="{{ route('teacher.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Trang chủ</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('teacher.courses') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Khóa học của tôi</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('teacher.students') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Học viên</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('teacher.scores') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Chấm điểm</div>
+            </a>
+        </li>
+          @elseif (auth()->user()->role === 'student')
+          <li class="menu-item">
+            <a href="{{ route('student.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Trang chủ</div>
+            </a>
+        </li>
+          <li class="menu-item">
+            <a href="{{ route('student.courses') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Khóa học đã đăng ký</div>
+            </a>
+        </li>
+          <li class="menu-item">
+            <a href="{{ route('student.results') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Tài khoản người dùng">Kết quả học tập</div>
+            </a>
+        </li>
+          @endif
+        
   </ul>
   
 </aside>
