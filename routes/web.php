@@ -130,6 +130,8 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
 Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('dashboard');
     Route::get('/courses', [StudentCourseController::class, 'index'])->name('courses');
+    // Route::post('/courses/register', [StudentCourseController::class, 'register'])->name('courses.register');
+        // Route::get('/courses/results', [StudentCourseController::class, 'results'])->name('courses.results');
     Route::get('/results', [StudentResultController::class, 'index'])->name('results'); 
     Route::get('/schedule', [StudentScheduleController::class, 'index'])->name('schedule');
     Route::get('/attendances', [StudentAttendanceController::class, 'index'])->name('attendance'); // bỏ chữ "s"
