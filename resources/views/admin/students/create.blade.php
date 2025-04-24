@@ -8,6 +8,13 @@
         @csrf
         <div class="card">
             <div class="card-body">
+                <div class="form-group mb-3">
+                    <label for="student_code">Mã sinh viên</label>
+                    <input type="text" name="student_code" id="student_code" class="form-control" value="{{ old('student_code') }}">
+                    @error('student_code')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
                 <!-- full_name -->
                 <div class="form-group mb-3">
                     <label for="full_name">Họ và tên</label>

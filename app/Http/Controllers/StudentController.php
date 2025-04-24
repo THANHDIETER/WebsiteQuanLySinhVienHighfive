@@ -24,6 +24,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'student_code' => 'required|unique:students|max:20',
             'full_name' => 'required',
             'gender' => 'required',
             'date_of_birth' => 'required|date',
@@ -31,9 +32,6 @@ class StudentController extends Controller
             'phone' => 'nullable',
             'address' => 'required',
         ]);
-
-        // Tạo mã sinh viên ngẫu nhiên
-        $validated['student_code'] = 'SV' . strtoupper(substr(uniqid(), -3)); // Dùng uniqid() để tạo mã sinh viên duy nhất
 
         Student::create($validated);
 
