@@ -17,12 +17,13 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'student_code' => strtoupper('SV' . $this->faker->unique()->numerify('###')),
+            'student_code' => 'SV' . $this->faker->unique()->numberBetween(100, 9999999), // Đảm bảo là duy nhất
             'full_name' => $this->faker->name,
             'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
             'date_of_birth' => $this->faker->date(),
             'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->phoneNumber,
+            'phone' => $this->faker->numerify('##########'),
+
             'address' => $this->faker->address,
         ];
     }

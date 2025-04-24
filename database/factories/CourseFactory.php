@@ -17,9 +17,9 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'course_code' => strtoupper('CS' . $this->faker->unique()->numerify('###')),
-            'course_name' => $this->faker->words(3, true),
-            'credits' => $this->faker->numberBetween(1, 4),
+            'course_code' => 'CS' . $this->faker->unique()->numerify('###'),  // Sử dụng unique() để đảm bảo không trùng lặp
+            'course_name' => $this->faker->sentence,
+            'credits' => $this->faker->numberBetween(1, 5),
             'description' => $this->faker->paragraph,
         ];
     }

@@ -101,7 +101,7 @@
           </a>
       </li>
       <li class="menu-item">
-          <a href="{{ route('admin.teachers.index') }}" class="menu-link"
+          <a href="{{ route('logout') }}" class="menu-link"
              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="menu-icon tf-icons bx bx-log-out"></i>
               <div data-i18n="Đăng xuất">Đăng xuất</div>

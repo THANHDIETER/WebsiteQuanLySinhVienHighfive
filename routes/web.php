@@ -12,12 +12,38 @@ use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Teacher\DashboardController as TeacherDashboard;
+use App\Http\Controllers\Student\DashboardController as StudentDashboard;
 
-// Admin route group
+// Authentication routes
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Admin routes here
+    // Admin route group
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Trang admin dashboard
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-    // quản lý sinh viên
+    Route::resource('attendances', AttendanceController::class);
+    Route::resource('course-teachers', CourseTeacherController::class);
+    Route::resource('enrollments', EnrollmentController::class);
+    Route::resource('notifications', NotificationController::class);
+    Route::resource('teachers', TeacherController::class);
+    Route::resource('users', UserController::class);
+
+    // Students management
     Route::prefix('students')->name('students.')->group(function () {
         Route::get('/', [StudentController::class, 'index'])->name('index');
         Route::get('/create', [StudentController::class, 'create'])->name('create');
@@ -29,10 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/{id}/restore', [StudentController::class, 'restore'])->name('restore');
     });
 
-    // Attendance
-    Route::resource('attendances', AttendanceController::class);
-
-    // Class Schedule
+    // Class schedules
     Route::prefix('class-schedules')->name('class_schedules.')->group(function () {
         Route::get('/', [ClassScheduleController::class, 'index'])->name('index');
         Route::get('/create', [ClassScheduleController::class, 'create'])->name('create');
@@ -44,50 +67,50 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/{id}/restore', [ClassScheduleController::class, 'restore'])->name('restore');
     });
 
-    // Course
+    // Courses
     Route::prefix('courses')->name('courses.')->group(function () {
-        Route::get('/', [CourseController::class, 'index'])->name('index'); // Danh sách khóa học
-        Route::get('/create', [CourseController::class, 'create'])->name('create'); // Form tạo mới
-        Route::post('/store', [CourseController::class, 'store'])->name('store'); // Lưu khóa học mới
-
-        Route::get('/show/{id}', [CourseController::class, 'show'])->name('show'); // Xem chi tiết
-        Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('edit'); // Form chỉnh sửa
-        Route::put('/update/{id}', [CourseController::class, 'update'])->name('update'); // Cập nhật
-        Route::delete('/delete/{id}', [CourseController::class, 'destroy'])->name('destroy'); // Xóa
+        Route::get('/', [CourseController::class, 'index'])->name('index');
+        Route::get('/create', [CourseController::class, 'create'])->name('create');
+        Route::post('/store', [CourseController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [CourseController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [CourseController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [CourseController::class, 'destroy'])->name('destroy');
         Route::get('trash', [CourseController::class, 'trash'])->name('trash');
         Route::post('{id}/restore', [CourseController::class, 'restore'])->name('restore');
         Route::delete('{id}/force-delete', [CourseController::class, 'forceDelete'])->name('forceDelete');
     });
 
-    // Course Teacher
-    Route::resource('course-teachers', CourseTeacherController::class);
-
-    // Enrollment
-    Route::resource('enrollments', EnrollmentController::class);
-
-    // Exam Result
+    // Exam Results
     Route::prefix('exam_results')->name('exam_results.')->group(function () {
-        Route::get('/', [ExamResultController::class, 'index'])->name('index'); // Danh sách điểm thi
-        Route::get('/create', [ExamResultController::class, 'create'])->name('create'); // Form tạo mới
-        Route::post('/store', [ExamResultController::class, 'store'])->name('store'); // Lưu kết quả mới
-
-        Route::get('/show/{id}', [ExamResultController::class, 'show'])->name('show'); // Xem chi tiết
-        Route::get('/edit/{id}', [ExamResultController::class, 'edit'])->name('edit'); // Form chỉnh sửa
-        Route::put('/update/{id}', [ExamResultController::class, 'update'])->name('update'); // Cập nhật
-        Route::delete('/delete/{id}', [ExamResultController::class, 'destroy'])->name('destroy'); // Xóa mềm
-
-        Route::get('trash', [CourseController::class, 'trash'])->name('trash');
-
+        Route::get('/', [ExamResultController::class, 'index'])->name('index');
+        Route::get('/create', [ExamResultController::class, 'create'])->name('create');
+        Route::post('/store', [ExamResultController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [ExamResultController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [ExamResultController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ExamResultController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ExamResultController::class, 'destroy'])->name('destroy');
+        Route::get('trash', [ExamResultController::class, 'trash'])->name('trash');
         Route::post('/{id}/restore', [ExamResultController::class, 'restore'])->name('restore');
         Route::delete('{id}/force-delete', [ExamResultController::class, 'forceDelete'])->name('forceDelete');
     });
+});
+});
+// General dashboards (adjust if needed)
+// Route::get('/admin/dashboard', fn() => 'Admin Dashboard')->name('admin.dashboard');
+// Route::get('/teacher/dashboard', fn() => 'Teacher Dashboard')->name('teacher.dashboard');
+// Route::get('/student/dashboard', fn() => 'Student Dashboard')->name('student.dashboard');
 
-    // Notification
-    Route::resource('notifications', NotificationController::class);
 
-    // Teacher
-    Route::resource('teachers', TeacherController::class);
 
-    // User
-    Route::resource('users', UserController::class);
+// Teacher routes
+Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')->group(function () {
+    Route::get('/dashboard', [TeacherDashboard::class, 'index'])->name('dashboard');
+    // Add teacher-specific routes here
+});
+
+// Student routes
+Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')->group(function () {
+    Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('dashboard');
+    // Add student-specific routes here
 });

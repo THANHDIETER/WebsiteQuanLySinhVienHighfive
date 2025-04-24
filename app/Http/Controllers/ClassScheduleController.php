@@ -6,9 +6,10 @@ use App\Models\ClassSchedule;
 use App\Models\Teacher;
 use App\Models\Course;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class ClassScheduleController extends Controller
 {
+    use SoftDeletes;
     public function index()
     {
         $schedules = ClassSchedule::with(['teacher', 'course'])

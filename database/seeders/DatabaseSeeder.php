@@ -12,8 +12,8 @@ use App\Models\Notification;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role; // Thêm dòng này
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,20 +21,38 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-{
-    Student::factory(50)->create();
-    Teacher::factory(50)->create();
-    Course::factory(50)->create();
+    {
+        // Đảm bảo đã tạo các role trước khi gán cho user
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $teacherRole = Role::firstOrCreate(['name' => 'teacher']);
+        $studentRole = Role::firstOrCreate(['name' => 'student']);
 
-    // Sau khi đã có students, teachers, courses
-    User::factory(50)->create(); // Nên gán role phù hợp sau nếu cần
+        // Tạo students, teachers, courses
+        Student::factory(20)->create();
+        Teacher::factory(20)->create();
+        Course::factory(20)->create();
 
-    CourseTeacher::factory(50)->create();
-    ClassSchedule::factory(50)->create();
-    Enrollment::factory(50)->create();
-    ExamResult::factory(50)->create();
-    Notification::factory(50)->create();
-    Attendance::factory(50)->create();
-}
+        // Sau khi tạo users, gán roles cho họ
+        $users = User::factory(20)->create();
 
+        foreach ($users as $index => $user) {
+            if ($index < 5) {
+                $user->assignRole($adminRole); // Gán 5 người đầu tiên là admin
+            } elseif ($index < 15) {
+                $user->assignRole($teacherRole); // Gán 10 người tiếp theo là teacher
+            } else {
+                $user->assignRole($studentRole); // Gán 5 người còn lại là student
+            }
+        }
+
+        // Tiến hành tạo các liên kết giữa các bảng
+        CourseTeacher::factory(20)->create();
+        ClassSchedule::factory(20)->create();
+        Enrollment::factory(20)->create();
+        ExamResult::factory(20)->create();
+        Notification::factory(20)->create();
+        Attendance::factory(20)->create();
+        $this->call(RoleSeeder::class);
+
+    }
 }
