@@ -34,7 +34,47 @@
             <p><strong>Lớp:</strong> {{ $student->class }}</p>
         </div>
     @else
-        <p>Không tìm thấy thông tin sinh viên.</p>
+    <div class="container py-4">
+        <h1 class="mb-4">📚 Student Dashboard</h1>
+    
+        {{-- Lịch học hôm nay --}}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                🗓️ Lịch học hôm nay
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">8:00 - 9:30: Lập trình PHP tại Phòng B101</li>
+                    <li class="list-group-item">10:00 - 11:30: Thiết kế Web tại Phòng A204</li>
+                    <li class="list-group-item">13:00 - 14:30: Cơ sở dữ liệu tại Phòng C302</li>
+                </ul>
+            </div>
+        </div>
+    
+        {{-- Thông báo mới --}}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-warning">
+                🔔 Thông báo mới
+            </div>
+            <div class="card-body">
+                <p><strong>Thông báo:</strong> Ngày 26/04 sẽ nghỉ học tiết chiều vì tổ chức hội thảo CNTT tại hội trường lớn.</p>
+                <p><strong>Ghi chú:</strong> Nhớ hoàn thành bài tập nhóm trước ngày 28/04.</p>
+            </div>
+        </div>
+    
+        {{-- Thông tin cá nhân --}}
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                👤 Thông tin sinh viên
+            </div>
+            <div class="card-body">
+                <p><strong>Họ tên:</strong> Nguyễn Văn A</p>
+                <p><strong>Mã sinh viên:</strong> PS12345</p>
+                <p><strong>Lớp:</strong> WD1234 - Lập trình web</p>
+                <p><strong>Email:</strong> nguyenvana@example.com</p>
+            </div>
+        </div>
+    </div>
     @endif
 </div>
 @endsection
