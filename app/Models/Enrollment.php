@@ -9,4 +9,13 @@ class Enrollment extends Model
 {
     /** @use HasFactory<\Database\Factories\EnrollmentFactory> */
     use HasFactory;
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

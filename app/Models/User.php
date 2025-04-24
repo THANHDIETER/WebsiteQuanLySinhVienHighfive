@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'user_id');  // Liên kết tới bảng students qua user_id
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id');  // Liên kết tới bảng notifications qua user_id
+    }
 }

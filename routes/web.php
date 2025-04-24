@@ -15,15 +15,22 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClassScheduleController;
 use App\Http\Controllers\CourseTeacherController;
 use App\Http\Controllers\Teacher\ScoreController;
+use App\Http\Controllers\Teacher\ScheduleController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Student\StudentCourseController;
 use App\Http\Controllers\Student\StudentResultController;
+use App\Http\Controllers\Student\StudentProfileController;
+use App\Http\Controllers\Teacher\TeacherProfileController;
+use App\Http\Controllers\Student\StudentScheduleController;
+use App\Http\Controllers\Student\StudentAttendanceController;
+use App\Http\Controllers\Student\StudentNotificationController;
+use App\Http\Controllers\Teacher\TeacherNotificationController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboard;
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboard;
 
 // Authentication routes
-
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
@@ -112,7 +119,10 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
     Route::get('/students', [StudentController::class, 'index'])->name('students');
     Route::get('/scores', [ScoreController::class, 'index'])->name('scores');
-
+    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+    Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendances');
+    Route::get('/profile', [TeacherProfileController::class, 'index'])->name('profile');
+    Route::get('/notifications', [TeacherNotificationController::class, 'index'])->name('notifications');
     // Add teacher-specific routes here
 });
 
@@ -121,6 +131,13 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
     Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('dashboard');
     Route::get('/courses', [StudentCourseController::class, 'index'])->name('courses');
     Route::get('/results', [StudentResultController::class, 'index'])->name('results'); 
-    
+    Route::get('/schedule', [StudentScheduleController::class, 'index'])->name('schedule');
+    Route::get('/attendances', [StudentAttendanceController::class, 'index'])->name('attendance'); // bỏ chữ "s"
+    Route::get('/profile', [StudentProfileController::class, 'index'])->name('profile');
+    Route::get('/notifications', [StudentNotificationController::class, 'index'])->name('notifications');
+   
 
 });
+Route::get('/error', function () {
+    return view('error');  // You can create an 'error.blade.php' file in the resources/views folder
+})->name('errorPage');

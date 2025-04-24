@@ -111,51 +111,100 @@
               @csrf
           </form>
       </li>
-        @elseif (auth()->user()->role === 'teacher')
-        <li class="menu-item">
-            <a href="{{ route('teacher.dashboard') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Trang chủ</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('teacher.courses') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Khóa học của tôi</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('teacher.students') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Học viên</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('teacher.scores') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Chấm điểm</div>
-            </a>
-        </li>
-          @elseif (auth()->user()->role === 'student')
-          <li class="menu-item">
-            <a href="{{ route('student.dashboard') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Trang chủ</div>
-            </a>
-        </li>
-          <li class="menu-item">
-            <a href="{{ route('student.courses') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Khóa học đã đăng ký</div>
-            </a>
-        </li>
-          <li class="menu-item">
-            <a href="{{ route('student.results') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tài khoản người dùng">Kết quả học tập</div>
-            </a>
-        </li>
-          @endif
+      @elseif (auth()->user()->role === 'teacher')
+      <li class="menu-item">
+          <a href="{{ route('teacher.dashboard') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home"></i>
+              <div>Trang chủ</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.courses') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-book"></i>
+              <div>Khóa học của tôi</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.students') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-user"></i>
+              <div>Học viên</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.attendance') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-check-square"></i>
+              <div>Điểm danh</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.scores') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-edit"></i>
+              <div>Chấm điểm</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.schedule') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-calendar"></i>
+              <div>Lịch dạy</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.notifications') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-bell"></i>
+              <div>Thông báo</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('teacher.profile') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-id-card"></i>
+              <div>Thông tin cá nhân</div>
+          </a>
+      </li>
+      @elseif (auth()->user()->role === 'student')
+      <li class="menu-item">
+          <a href="{{ route('student.dashboard') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home"></i>
+              <div>Trang chủ</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.courses') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-book"></i>
+              <div>Khóa học đã đăng ký</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.results') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-bar-chart"></i>
+              <div>Kết quả học tập</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.attendance') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-check-square"></i>
+              <div>Điểm danh</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.schedule') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-calendar"></i>
+              <div>Lịch học</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.notifications') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-bell"></i>
+              <div>Thông báo</div>
+          </a>
+      </li>
+      <li class="menu-item">
+          <a href="{{ route('student.profile') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-id-card"></i>
+              <div>Thông tin cá nhân</div>
+          </a>
+      </li>
+  @endif
+  
         
   </ul>
   
