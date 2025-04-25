@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Models\Course;
 use App\Http\Controllers\Controller;
 
 class StudentCourseController extends Controller
 {
     public function index()
     {
-        return view('student.courses.index'); // tạo view này để tránh lỗi tiếp theo
+        $courses = Course::with(['teacher', 'classSchedules'])->get();
+        // return response()->json($courses);
+        return view('student.courses.index', compact('courses'));
+
     }
 }

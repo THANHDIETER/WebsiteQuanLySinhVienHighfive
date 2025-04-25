@@ -120,7 +120,7 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::get('/students', [StudentController::class, 'index'])->name('students');
     Route::get('/scores', [ScoreController::class, 'index'])->name('scores');
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
-    Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendances');
+    Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendance');
     Route::get('/profile', [TeacherProfileController::class, 'index'])->name('profile');
     Route::get('/notifications', [TeacherNotificationController::class, 'index'])->name('notifications');
     // Add teacher-specific routes here
