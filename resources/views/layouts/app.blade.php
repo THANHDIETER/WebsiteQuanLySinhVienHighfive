@@ -56,6 +56,48 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/typeahead-js/typeahead.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css" rel="stylesheet">
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <style>
+        #calendar {
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        /* Làm đậm border cho ô ngày */
+        .fc-daygrid-day {
+            border: 1px solid #469fae !important; /* Đậm viền ô ngày */
+        }
+        /* Làm đậm border cho sự kiện */
+        .fc-event {
+            border: 1px solid #000 !important; /* Đậm viền sự kiện */
+        }
+        /* Làm đậm border cho toàn bộ lịch */
+        .fc {
+            border: 1px solid #08c69c !important; /* Đậm viền toàn bộ lịch */
+        }
+        .fc-daygrid-day-number {
+            font-weight: bold !important; /* Làm đậm */
+            font-size: 18px !important; /* Tăng kích thước chữ */
+            display: block !important; /* Đảm bảo căn giữa */
+            text-align: center !important; /* Căn giữa */
+            line-height: 30px !important; /* Tăng chiều cao dòng để căn giữa dọc */
+        }
+        .notification {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .notification h4 {
+            margin: 0 0 10px;
+        }
+        .notification .date {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
 
     <!-- Page CSS -->
 

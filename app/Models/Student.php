@@ -31,4 +31,19 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id');  // Liên kết tới bảng users qua user_id
     }
+    // Quan hệ với bảng enrollments
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    // Khóa học đã đăng ký
+    // public function courses()
+    // {
+    //     return $this->belongsToMany(Course::class, 'enrollments');
+    // }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'enrollments', 'student_id', 'course_id');
+    }
 }
